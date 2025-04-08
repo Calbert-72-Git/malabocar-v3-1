@@ -1,10 +1,16 @@
 
-import React from 'react';
-import { Car, Phone, Search } from 'lucide-react';
+import React, { useState } from 'react';
+import { Car, Phone, Search, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
     <header className="w-full bg-white shadow-md">
       {/* Barra superior */}
@@ -35,15 +41,29 @@ const Header = () => {
           </Link>
         </div>
         
+        {/* Botón de menú móvil */}
+        {isMobile && (
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="md:hidden"
+            onClick={toggleMenu}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </Button>
+        )}
+
+        {/* Navegación escritorio */}
         <nav className="hidden md:flex items-center space-x-8">
           <Link to="/" className="text-gray-700 hover:text-primary font-medium">Inicio</Link>
           <a href="/#vehiculos" className="text-gray-700 hover:text-primary font-medium">Vehículos</a>
           <Link to="/catalog" className="text-gray-700 hover:text-primary font-medium">Catálogo</Link>
+          <Link to="/featured" className="text-gray-700 hover:text-primary font-medium">Destacados</Link>
           <a href="/#servicios" className="text-gray-700 hover:text-primary font-medium">Servicios</a>
           <a href="/#contacto" className="text-gray-700 hover:text-primary font-medium">Contacto</a>
         </nav>
 
-        <div className="flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-4">
           <Search className="h-5 w-5 text-gray-500" />
           <Link to="/catalog">
             <Button variant="default" className="bg-primary hover:bg-primary/90">
@@ -52,6 +72,25 @@ const Header = () => {
           </Link>
         </div>
       </div>
+
+      {/* Menú móvil */}
+      {isMobile && isMenuOpen && (
+        <div className="md:hidden bg-white py-4 px-6 shadow-lg">
+          <nav className="flex flex-col space-y-4">
+            <Link to="/" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Inicio</Link>
+            <a href="/#vehiculos" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Vehículos</a>
+            <Link to="/catalog" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Catálogo</Link>
+            <Link to="/featured" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Destacados</Link>
+            <a href="/#servicios" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Servicios</a>
+            <a href="/#contacto" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Contacto</a>
+            <Link to="/catalog" className="w-full" onClick={toggleMenu}>
+              <Button variant="default" className="bg-primary hover:bg-primary/90 w-full">
+                Ver Catálogo
+              </Button>
+            </Link>
+          </nav>
+        </div>
+      )}
 
       {/* Banner principal */}
       <div className="header-banner w-full h-[600px] flex items-center justify-center">

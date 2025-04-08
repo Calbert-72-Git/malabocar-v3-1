@@ -1,10 +1,11 @@
 
 import React from 'react';
 import { vehicles } from '@/data/vehicles';
-import { ArrowRight, Car, Star } from 'lucide-react';
+import { ArrowRight, Car, Star, Calendar, Fuel, Gauge } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const FeaturedVehicles = () => {
   const featuredVehicles = vehicles.filter(vehicle => vehicle.featured);
@@ -21,13 +22,19 @@ const FeaturedVehicles = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featuredVehicles.map((vehicle) => (
-            <div key={vehicle.id} className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all hover:-translate-y-2">
+          {featuredVehicles.map((vehicle, index) => (
+            <motion.div 
+              key={vehicle.id} 
+              className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all hover:-translate-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+            >
               <div className="relative">
                 <img 
                   src={vehicle.imageUrl} 
                   alt={vehicle.name} 
-                  className="w-full h-56 object-cover"
+                  className="w-full h-64 object-cover"
                 />
                 <Badge className="absolute top-3 right-3 bg-primary hover:bg-primary/90 text-white px-3 py-1">
                   <Star className="w-4 h-4 mr-1" fill="currentColor" strokeWidth={0} />
@@ -38,28 +45,47 @@ const FeaturedVehicles = () => {
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{vehicle.name}</h3>
                 <div className="flex justify-between items-center mb-4">
                   <p className="text-gray-600 text-sm">{vehicle.model}</p>
-                  <p className="text-sm text-gray-500">{vehicle.year}</p>
+                  <div className="flex items-center text-gray-500">
+                    <Calendar className="w-4 h-4 mr-1" />
+                    <span className="text-sm">{vehicle.year}</span>
+                  </div>
                 </div>
-                <div className="flex items-center mb-4">
-                  <Car className="w-4 h-4 text-primary mr-2" />
-                  <span className="text-gray-700">{vehicle.color}</span>
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="flex items-center">
+                    <Car className="w-4 h-4 text-primary mr-2" />
+                    <span className="text-sm text-gray-700">{vehicle.color}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Gauge className="w-4 h-4 text-primary mr-2" />
+                    <span className="text-sm text-gray-700">{vehicle.transmission}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Fuel className="w-4 h-4 text-primary mr-2" />
+                    <span className="text-sm text-gray-700">{vehicle.fuel}</span>
+                  </div>
                 </div>
                 <p className="text-2xl font-bold text-primary mb-4">{vehicle.price}</p>
                 <Link to={`/catalog/${vehicle.id}`}>
-                  <Button className="w-full mt-2">
+                  <Button className="w-full mt-2 group">
                     Ver detalles
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         
         <div className="text-center mt-12">
+          <Link to="/featured">
+            <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white mr-4">
+              Ver todos los destacados
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
           <Link to="/catalog">
-            <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-              Ver todos los vehículos
+            <Button variant="default" className="bg-primary hover:bg-primary/90">
+              Ver catálogo completo
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
