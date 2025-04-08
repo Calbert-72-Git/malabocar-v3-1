@@ -29,7 +29,7 @@ const Catalog = () => {
   const fuels = [...new Set(vehicles.map(v => v.fuel))];
   
   const handleFilterChange = (type: string, value: string) => {
-    setFilters(prev => ({ ...prev, [type]: value }));
+    setFilters(prev => ({ ...prev, [type]: value === 'all' ? '' : value }));
   };
   
   const resetFilters = () => {

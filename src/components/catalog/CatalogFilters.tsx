@@ -49,7 +49,7 @@ const CatalogFilters: React.FC<CatalogFiltersProps> = ({
             <SelectValue placeholder="Marca" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Todas las marcas</SelectItem>
+            <SelectItem value="all">Todas las marcas</SelectItem>
             {brands.map(brand => (
               <SelectItem key={brand} value={brand}>{brand}</SelectItem>
             ))}
@@ -64,7 +64,7 @@ const CatalogFilters: React.FC<CatalogFiltersProps> = ({
             <SelectValue placeholder="Año" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Todos los años</SelectItem>
+            <SelectItem value="all">Todos los años</SelectItem>
             {years.map(year => (
               <SelectItem key={year} value={year}>{year}</SelectItem>
             ))}
@@ -79,7 +79,7 @@ const CatalogFilters: React.FC<CatalogFiltersProps> = ({
             <SelectValue placeholder="Color" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Todos los colores</SelectItem>
+            <SelectItem value="all">Todos los colores</SelectItem>
             {colors.map(color => (
               <SelectItem key={color} value={color}>{color}</SelectItem>
             ))}
@@ -94,7 +94,7 @@ const CatalogFilters: React.FC<CatalogFiltersProps> = ({
             <SelectValue placeholder="Transmisión" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Todas las transmisiones</SelectItem>
+            <SelectItem value="all">Todas las transmisiones</SelectItem>
             {transmissions.map(transmission => (
               <SelectItem key={transmission} value={transmission}>{transmission}</SelectItem>
             ))}
@@ -109,7 +109,7 @@ const CatalogFilters: React.FC<CatalogFiltersProps> = ({
             <SelectValue placeholder="Combustible" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Todos los combustibles</SelectItem>
+            <SelectItem value="all">Todos los combustibles</SelectItem>
             {fuels.map(fuel => (
               <SelectItem key={fuel} value={fuel}>{fuel}</SelectItem>
             ))}
