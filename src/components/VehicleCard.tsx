@@ -1,94 +1,90 @@
 
 import React from 'react';
-import { Share2, Info, Star, Calendar, ArrowRight } from 'lucide-react';
-import { Vehicle } from '@/data/vehicles';
-import { toast } from '@/hooks/use-toast';
+import { Link } from 'react-router-dom';
+import { Calendar, Fuel, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Card, 
-  CardContent,  
-  CardFooter, 
-} from '@/components/ui/card';
+import { useCart } from '@/context/CartContext';
 
 interface VehicleCardProps {
-  vehicle: Vehicle;
+  vehicle: {
+    id: number;
+    name: string;
+    model: string;
+    price: number;
+    oldPrice?: number;
+    year: number;
+    image: string;
+    featured?: boolean;
+    condition?: string;
+    transmission: string;
+    color: string;
+    description: string;
+    fuel: string;
+  };
+  linkTo?: string;
 }
 
-const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
-  const handleShare = () => {
-    navigator.clipboard.writeText(
-      `¡Mira este vehículo en Malabo Car! ${vehicle.name} (${vehicle.model}) - ${vehicle.price}`
-    );
-    
-    toast({
-      title: "¡Enlace copiado!",
-      description: "Ahora puedes compartir este vehículo",
-    });
-  };
+const VehicleCard = ({ vehicle, linkTo = `/vehicle/${vehicle.id}` }: VehicleCardProps) => {
+  const { addToCart } = useCart();
 
-  const handleViewDetails = () => {
-    toast({
-      title: "Información del vehículo",
-      description: vehicle.description,
-    });
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(vehicle);
   };
 
   return (
-    <Card className="vehicle-card overflow-hidden border-0 shadow-lg">
-      <div className="relative h-56 overflow-hidden">
-        <img 
-          src={vehicle.imageUrl} 
-          alt={vehicle.name} 
-          className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-        />
-        <Badge className="absolute top-3 right-3 bg-primary hover:bg-primary/90 text-white px-3 py-1">
-          <Star className="w-4 h-4 mr-1" fill="currentColor" strokeWidth={0} />
-          Destacado
-        </Badge>
-      </div>
-      <CardContent className="bg-white p-5">
-        <div className="flex justify-between items-center mb-3">
-          <h3 className="text-xl font-bold text-gray-800">{vehicle.name}</h3>
-          <div className="flex items-center text-gray-500">
-            <Calendar className="w-4 h-4 mr-1" />
-            <span className="text-sm">{vehicle.year}</span>
+    <Link to={linkTo}>
+      <div className="vehicle-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+        <div className="relative">
+          <img
+            src={vehicle.image}
+            alt={vehicle.name}
+            className="w-full h-48 object-cover"
+          />
+          {vehicle.featured && (
+            <div className="absolute top-0 right-0 bg-primary text-white px-3 py-1 text-xs font-semibold">
+              Destacado
+            </div>
+          )}
+        </div>
+        <div className="p-4">
+          <h3 className="text-lg font-bold text-gray-800 mb-1 line-clamp-1">{vehicle.name}</h3>
+          <p className="text-sm text-gray-600 mb-2">{vehicle.model}</p>
+          
+          <div className="flex justify-between items-center mb-3">
+            <div>
+              <p className="text-lg font-bold text-primary">${vehicle.price.toLocaleString()}</p>
+              {vehicle.oldPrice && (
+                <p className="text-xs text-gray-400 line-through">
+                  ${vehicle.oldPrice.toLocaleString()}
+                </p>
+              )}
+            </div>
+            <Button 
+              size="sm" 
+              variant="ghost" 
+              className="text-primary hover:bg-primary/10 p-1 h-auto"
+              onClick={handleAddToCart}
+            >
+              <ShoppingCart className="h-5 w-5" />
+            </Button>
+          </div>
+          
+          <div className="flex items-center justify-between text-sm text-gray-500">
+            <div className="flex items-center">
+              <Calendar className="h-4 w-4 mr-1" />
+              <span>{vehicle.year}</span>
+            </div>
+            <div className="flex items-center">
+              <Fuel className="h-4 w-4 mr-1" />
+              <span>{vehicle.fuel}</span>
+            </div>
           </div>
         </div>
-        <p className="text-gray-600 text-sm mb-3">{vehicle.model}</p>
-        <p className="text-2xl font-bold text-primary mb-3">{vehicle.price}</p>
-        <div className="flex items-center mb-3 text-sm text-gray-500">
-          <span>Automático</span>
-          <span className="mx-2">•</span>
-          <span>Gasolina</span>
-          <span className="mx-2">•</span>
-          <span>5 puertas</span>
-        </div>
-        <p className="text-sm text-gray-600 line-clamp-2 mb-4">{vehicle.description}</p>
-      </CardContent>
-      <CardFooter className="flex justify-between bg-gray-50 p-4 border-t border-gray-100">
-        <Button 
-          variant="outline" 
-          size="sm" 
-          className="flex items-center border-gray-300 hover:border-primary hover:text-primary" 
-          onClick={handleShare}
-        >
-          <Share2 className="mr-2 h-4 w-4" />
-          Compartir
-        </Button>
-        <Button 
-          variant="default" 
-          size="sm" 
-          className="flex items-center bg-primary hover:bg-primary/90" 
-          onClick={handleViewDetails}
-        >
-          Ver detalles
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-      </CardFooter>
-    </Card>
+      </div>
+    </Link>
   );
 };
 
 export default VehicleCard;
-

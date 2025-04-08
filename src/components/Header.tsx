@@ -4,6 +4,7 @@ import { Car, Phone, Search, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
+import CartDrawer from '@/components/cart/CartDrawer';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,12 +60,13 @@ const Header = () => {
           <a href="/#vehiculos" className="text-gray-700 hover:text-primary font-medium">Vehículos</a>
           <Link to="/catalog" className="text-gray-700 hover:text-primary font-medium">Catálogo</Link>
           <Link to="/featured" className="text-gray-700 hover:text-primary font-medium">Destacados</Link>
-          <a href="/#servicios" className="text-gray-700 hover:text-primary font-medium">Servicios</a>
-          <a href="/#contacto" className="text-gray-700 hover:text-primary font-medium">Contacto</a>
+          <Link to="/about" className="text-gray-700 hover:text-primary font-medium">Nosotros</Link>
+          <Link to="/contact" className="text-gray-700 hover:text-primary font-medium">Contacto</Link>
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
           <Search className="h-5 w-5 text-gray-500" />
+          <CartDrawer />
           <Link to="/catalog">
             <Button variant="default" className="bg-primary hover:bg-primary/90">
               Ver Catálogo
@@ -81,13 +83,17 @@ const Header = () => {
             <a href="/#vehiculos" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Vehículos</a>
             <Link to="/catalog" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Catálogo</Link>
             <Link to="/featured" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Destacados</Link>
-            <a href="/#servicios" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Servicios</a>
-            <a href="/#contacto" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Contacto</a>
-            <Link to="/catalog" className="w-full" onClick={toggleMenu}>
-              <Button variant="default" className="bg-primary hover:bg-primary/90 w-full">
-                Ver Catálogo
-              </Button>
-            </Link>
+            <Link to="/about" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Nosotros</Link>
+            <Link to="/contact" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Contacto</Link>
+            
+            <div className="flex items-center justify-between py-2">
+              <CartDrawer />
+              <Link to="/catalog" className="flex-grow ml-4" onClick={toggleMenu}>
+                <Button variant="default" className="bg-primary hover:bg-primary/90 w-full">
+                  Ver Catálogo
+                </Button>
+              </Link>
+            </div>
           </nav>
         </div>
       )}
@@ -107,11 +113,11 @@ const Header = () => {
                 Ver catálogo
               </Button>
             </Link>
-            <a href="#contacto">
+            <Link to="/contact">
               <Button variant="outline" className="bg-white/10 backdrop-blur text-white border-white hover:bg-white/20 py-3 px-8 rounded-full text-lg">
                 Contactar
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
