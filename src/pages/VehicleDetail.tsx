@@ -62,6 +62,9 @@ const VehicleDetail = () => {
     addToCart(vehicle);
   };
 
+  // Crear un array de imágenes para la galería
+  const galleryImages = Array(4).fill(vehicle.imageUrl || '/placeholder.svg');
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -77,7 +80,7 @@ const VehicleDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Galería de imágenes */}
             <div>
-              <VehicleGallery images={Array(4).fill(vehicle.image)} />
+              <VehicleGallery images={galleryImages} />
             </div>
             
             {/* Información del vehículo */}
@@ -86,10 +89,7 @@ const VehicleDetail = () => {
               <h2 className="text-xl text-gray-600 mb-6">{vehicle.model}</h2>
               
               <div className="flex items-center mb-6">
-                <span className="text-3xl font-bold text-primary">${vehicle.price.toLocaleString()}</span>
-                {vehicle.oldPrice && (
-                  <span className="text-xl text-gray-400 line-through ml-3">${vehicle.oldPrice.toLocaleString()}</span>
-                )}
+                <span className="text-3xl font-bold text-primary">{vehicle.price}</span>
               </div>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">

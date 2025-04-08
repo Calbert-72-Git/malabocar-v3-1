@@ -4,23 +4,10 @@ import { Link } from 'react-router-dom';
 import { Calendar, Fuel, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
+import { Vehicle } from '@/data/vehicles';
 
 interface VehicleCardProps {
-  vehicle: {
-    id: number;
-    name: string;
-    model: string;
-    price: number;
-    oldPrice?: number;
-    year: number;
-    image: string;
-    featured?: boolean;
-    condition?: string;
-    transmission: string;
-    color: string;
-    description: string;
-    fuel: string;
-  };
+  vehicle: Vehicle;
   linkTo?: string;
 }
 
@@ -38,9 +25,13 @@ const VehicleCard = ({ vehicle, linkTo = `/vehicle/${vehicle.id}` }: VehicleCard
       <div className="vehicle-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
         <div className="relative">
           <img
-            src={vehicle.image}
+            src={vehicle.imageUrl}
             alt={vehicle.name}
             className="w-full h-48 object-cover"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = "/placeholder.svg";
+            }}
           />
           {vehicle.featured && (
             <div className="absolute top-0 right-0 bg-primary text-white px-3 py-1 text-xs font-semibold">
@@ -54,10 +45,10 @@ const VehicleCard = ({ vehicle, linkTo = `/vehicle/${vehicle.id}` }: VehicleCard
           
           <div className="flex justify-between items-center mb-3">
             <div>
-              <p className="text-lg font-bold text-primary">${vehicle.price.toLocaleString()}</p>
+              <p className="text-lg font-bold text-primary">{vehicle.price}</p>
               {vehicle.oldPrice && (
                 <p className="text-xs text-gray-400 line-through">
-                  ${vehicle.oldPrice.toLocaleString()}
+                  {vehicle.oldPrice}
                 </p>
               )}
             </div>

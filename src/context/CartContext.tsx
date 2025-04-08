@@ -1,15 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'sonner';
-
-interface Vehicle {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-  model: string;
-  year: number;
-}
+import { Vehicle } from '@/data/vehicles';
 
 interface CartItem extends Vehicle {
   quantity: number;
@@ -18,11 +10,11 @@ interface CartItem extends Vehicle {
 interface CartContextType {
   cartItems: CartItem[];
   addToCart: (vehicle: Vehicle) => void;
-  removeFromCart: (id: number) => void;
+  removeFromCart: (id: string) => void;
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
-  updateQuantity: (id: number, quantity: number) => void;
+  updateQuantity: (id: string, quantity: number) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -51,7 +43,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const items = cartItems.reduce((total, item) => total + item.quantity, 0);
     setTotalItems(items);
     
-    const price = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+    // Convertir el precio de string a número para el cálculo
+    const price = cartItems.reduce((total, item) => {
+      const itemPrice = parseFloat(item.price.replace('$', '').replace(',', ''));
+      return isNaN(itemPrice) ? total : total + (itemPrice * item.quantity);
+    }, 0);
+    
     setTotalPrice(price);
   }, [cartItems]);
 
@@ -73,7 +70,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   };
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id: string) => {
     setCartItems(prev => {
       const item = prev.find(item => item.id === id);
       if (item) {
@@ -83,7 +80,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   };
 
-  const updateQuantity = (id: number, quantity: number) => {
+  const updateQuantity = (id: string, quantity: number) => {
     if (quantity <= 0) {
       removeFromCart(id);
       return;
