@@ -1,14 +1,16 @@
 
 import React from 'react';
-import { Share2, Info, Star, Calendar, ArrowRight } from 'lucide-react';
+import { Share2, Info, Star } from 'lucide-react';
 import { Vehicle } from '@/data/vehicles';
 import { toast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { 
   Card, 
-  CardContent,  
+  CardContent, 
+  CardDescription, 
   CardFooter, 
+  CardHeader, 
+  CardTitle 
 } from '@/components/ui/card';
 
 interface VehicleCardProps {
@@ -18,7 +20,7 @@ interface VehicleCardProps {
 const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
   const handleShare = () => {
     navigator.clipboard.writeText(
-      `¡Mira este vehículo en Malabo Car! ${vehicle.name} (${vehicle.model}) - ${vehicle.price}`
+      `¡Mira este vehículo en Calbert 72! ${vehicle.name} (${vehicle.model}) - ${vehicle.price}`
     );
     
     toast({
@@ -42,35 +44,30 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
           alt={vehicle.name} 
           className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
         />
-        <Badge className="absolute top-3 right-3 bg-primary hover:bg-primary/90 text-white px-3 py-1">
+        <div className="absolute top-3 right-3 bg-yellow-400 text-gray-900 px-2 py-1 rounded-md font-medium text-sm flex items-center">
           <Star className="w-4 h-4 mr-1" fill="currentColor" strokeWidth={0} />
           Destacado
-        </Badge>
-      </div>
-      <CardContent className="bg-white p-5">
-        <div className="flex justify-between items-center mb-3">
-          <h3 className="text-xl font-bold text-gray-800">{vehicle.name}</h3>
-          <div className="flex items-center text-gray-500">
-            <Calendar className="w-4 h-4 mr-1" />
-            <span className="text-sm">{vehicle.year}</span>
-          </div>
         </div>
-        <p className="text-gray-600 text-sm mb-3">{vehicle.model}</p>
-        <p className="text-2xl font-bold text-primary mb-3">{vehicle.price}</p>
-        <div className="flex items-center mb-3 text-sm text-gray-500">
+      </div>
+      <CardHeader className="bg-white pb-0">
+        <CardTitle className="text-xl text-gray-800">{vehicle.name}</CardTitle>
+        <CardDescription className="text-gray-600">{vehicle.model} - {vehicle.year}</CardDescription>
+      </CardHeader>
+      <CardContent className="pt-4 bg-white">
+        <p className="text-2xl font-bold text-blue-700">{vehicle.price}</p>
+        <div className="flex items-center mt-2 text-sm text-gray-500">
           <span>Automático</span>
           <span className="mx-2">•</span>
           <span>Gasolina</span>
           <span className="mx-2">•</span>
           <span>5 puertas</span>
         </div>
-        <p className="text-sm text-gray-600 line-clamp-2 mb-4">{vehicle.description}</p>
       </CardContent>
-      <CardFooter className="flex justify-between bg-gray-50 p-4 border-t border-gray-100">
+      <CardFooter className="flex justify-between bg-white pt-0">
         <Button 
           variant="outline" 
           size="sm" 
-          className="flex items-center border-gray-300 hover:border-primary hover:text-primary" 
+          className="flex items-center border-gray-300 hover:bg-gray-100 hover:border-gray-400" 
           onClick={handleShare}
         >
           <Share2 className="mr-2 h-4 w-4" />
@@ -79,11 +76,11 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
         <Button 
           variant="default" 
           size="sm" 
-          className="flex items-center bg-primary hover:bg-primary/90" 
+          className="flex items-center bg-blue-600 hover:bg-blue-700" 
           onClick={handleViewDetails}
         >
+          <Info className="mr-2 h-4 w-4" />
           Ver detalles
-          <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </CardFooter>
     </Card>
@@ -91,4 +88,3 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
 };
 
 export default VehicleCard;
-
