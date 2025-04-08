@@ -10,9 +10,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
       <main className="flex-grow">
-        <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <VehicleGallery />
-        </div>
+        <VehicleGallery />
       </main>
       <WhatsAppButton />
       <Footer />
@@ -21,3 +19,4 @@ const Index = () => {
 };
 
 export default Index;
+
