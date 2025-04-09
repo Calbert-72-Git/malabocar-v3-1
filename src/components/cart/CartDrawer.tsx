@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   Drawer, 
@@ -36,7 +35,7 @@ const CartDrawer = () => {
       message += `Detalles: ${item.transmission}, ${item.fuel}, ${item.doors} puertas\n\n`;
     });
     
-    message += `*Total: $${totalPrice.toLocaleString()}*\n\n`;
+    message += `*Total: ${totalPrice.toLocaleString()} FCFA*\n\n`;
     message += "Por favor, envíeme más información sobre cómo proceder con el pago.";
     
     // Codificar mensaje para URL
@@ -138,11 +137,11 @@ const CartDrawer = () => {
             <div className="p-4">
               <div className="flex justify-between mb-2">
                 <span className="text-muted-foreground">Subtotal</span>
-                <span>${totalPrice.toLocaleString()}</span>
+                <span>{totalPrice.toLocaleString()} FCFA</span>
               </div>
               <div className="flex justify-between font-medium text-lg mt-4">
                 <span>Total</span>
-                <span>${totalPrice.toLocaleString()}</span>
+                <span>{totalPrice.toLocaleString()} FCFA</span>
               </div>
             </div>
           </>

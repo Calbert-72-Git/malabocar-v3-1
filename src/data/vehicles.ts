@@ -23,7 +23,7 @@ const createVehicles = () => {
     {
       id: '1',
       name: 'Mercedes-Benz GLA',
-      price: '$78,500',
+      price: '78.500.000 FCFA',
       model: 'GLA 200',
       year: 2023,
       color: 'Gris Plata',
@@ -37,7 +37,7 @@ const createVehicles = () => {
     {
       id: '2',
       name: 'Audi Q5',
-      price: '$82,300',
+      price: '82.300.000 FCFA',
       model: 'Q5 Sportback',
       year: 2023,
       color: 'Negro',
@@ -51,7 +51,7 @@ const createVehicles = () => {
     {
       id: '3',
       name: 'BMW X3',
-      price: '$75,900',
+      price: '75.900.000 FCFA',
       model: 'X3 xDrive30i',
       year: 2023,
       color: 'Azul Marino',
@@ -65,7 +65,7 @@ const createVehicles = () => {
     {
       id: '4',
       name: 'Volkswagen Tiguan',
-      price: '$45,700',
+      price: '45.700.000 FCFA',
       model: 'Tiguan Highline',
       year: 2023,
       color: 'Blanco',
@@ -79,7 +79,7 @@ const createVehicles = () => {
     {
       id: '5',
       name: 'Toyota Corolla',
-      price: '$32,900',
+      price: '32.900.000 FCFA',
       model: 'Corolla Hybrid',
       year: 2023,
       color: 'Rojo',
@@ -93,7 +93,7 @@ const createVehicles = () => {
     {
       id: '6',
       name: 'Honda CR-V',
-      price: '$49,800',
+      price: '49.800.000 FCFA',
       model: 'CR-V Touring',
       year: 2023,
       color: 'Gris Oscuro',
