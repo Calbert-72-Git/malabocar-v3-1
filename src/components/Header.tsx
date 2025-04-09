@@ -1,15 +1,17 @@
 
 import React, { useState } from 'react';
-import { Car, Phone, Search, Menu, X, UserCircle, LogIn } from 'lucide-react';
+import { Car, Phone, Search, Menu, X, UserCircle, LogIn, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
 import CartDrawer from '@/components/cart/CartDrawer';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { useCart } from '@/context/CartContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  const { totalItems } = useCart();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -150,7 +152,14 @@ const Header = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             <Search className="h-5 w-5 text-gray-500" />
-            <CartDrawer />
+            <div className="relative">
+              <CartDrawer />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </div>
             <Link to="/catalog">
               <Button variant="default" className="bg-primary hover:bg-primary/90">
                 Ver Catálogo
@@ -172,7 +181,14 @@ const Header = () => {
             <Link to="/contact" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Contacto</Link>
             
             <div className="flex items-center justify-between py-2">
-              <CartDrawer />
+              <div className="relative">
+                <CartDrawer />
+                {totalItems > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+              </div>
               <Link to="/catalog" className="flex-grow ml-4" onClick={toggleMenu}>
                 <Button variant="default" className="bg-primary hover:bg-primary/90 w-full">
                   Ver Catálogo
