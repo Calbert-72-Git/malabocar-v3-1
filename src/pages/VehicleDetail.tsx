@@ -1,53 +1,43 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { ArrowLeft, Calendar, Fuel, Car, DoorOpen } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 import { vehicles } from '@/data/vehicles';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import VehicleGallery from '@/components/VehicleGallery';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { Button } from '@/components/ui/button';
-import { ShoppingCart, Calendar, Fuel, LayoutGrid, ArrowLeft, Wrench } from 'lucide-react';
+import Footer from '@/components/Footer';
 import { useCart } from '@/context/CartContext';
+import { toast } from 'sonner';
 
 const VehicleDetail = () => {
-  const { id } = useParams<{ id: string }>();
-  const [vehicle, setVehicle] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+  const [vehicle, setVehicle] = useState(null);
   const { addToCart } = useCart();
 
   useEffect(() => {
-    // Simulamos una carga de datos
-    setTimeout(() => {
-      const foundVehicle = vehicles.find(v => v.id.toString() === id);
+    const foundVehicle = vehicles.find(v => v.id === id);
+    if (foundVehicle) {
       setVehicle(foundVehicle);
-      setLoading(false);
-    }, 500);
+    }
   }, [id]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-grow flex items-center justify-center">
-          <div className="text-center">
-            <div className="h-8 w-8 border-4 border-t-primary rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600">Cargando detalles del vehículo...</p>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
+  const handleAddToCart = () => {
+    if (vehicle) {
+      addToCart(vehicle);
+      toast.success(`${vehicle.name} añadido al carrito`);
+    }
+  };
 
   if (!vehicle) {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow flex items-center justify-center">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Vehículo no encontrado</h2>
-            <p className="text-gray-600 mb-6">El vehículo que estás buscando no existe o ha sido eliminado.</p>
+          <div className="text-center p-10">
+            <h2 className="text-2xl font-bold mb-4">Vehículo no encontrado</h2>
             <Link to="/">
               <Button>Volver al inicio</Button>
             </Link>
@@ -58,125 +48,89 @@ const VehicleDetail = () => {
     );
   }
 
-  const handleAddToCart = () => {
-    addToCart(vehicle);
-  };
-
-  // Crear un array de imágenes para la galería
-  const galleryImages = Array(4).fill(vehicle.imageUrl || '/placeholder.svg');
-
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow pt-8 pb-16">
-        <div className="container mx-auto px-4">
-          <div className="mb-8">
-            <Link to="/" className="inline-flex items-center text-primary hover:underline">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Volver al inicio
-            </Link>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Galería de imágenes */}
-            <div>
-              <VehicleGallery images={galleryImages} />
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <div className="mb-6">
+          <Link to="/" className="inline-flex items-center text-primary hover:underline mb-4">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Volver al inicio
+          </Link>
+          <h1 className="text-3xl md:text-4xl font-bold">{vehicle.name}</h1>
+          <p className="text-lg text-gray-600">{vehicle.model}</p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div>
+            <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6">
+              <img 
+                src={vehicle.imageUrl} 
+                alt={vehicle.name} 
+                className="w-full h-auto object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "/placeholder.svg";
+                }}
+              />
             </div>
-            
-            {/* Información del vehículo */}
+          </div>
+
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-3xl font-bold text-primary">{vehicle.price}</h2>
+                {vehicle.oldPrice && (
+                  <p className="text-sm text-gray-400 line-through">{vehicle.oldPrice}</p>
+                )}
+              </div>
+              <Button onClick={handleAddToCart} className="px-6">
+                Añadir al carrito
+              </Button>
+            </div>
+
+            <Separator />
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-gray-50 p-3 rounded-lg text-center">
+                <Calendar className="h-6 w-6 mx-auto mb-2 text-primary" />
+                <span className="text-sm font-medium block">{vehicle.year}</span>
+                <span className="text-xs text-gray-500">Año</span>
+              </div>
+              <div className="bg-gray-50 p-3 rounded-lg text-center">
+                <Fuel className="h-6 w-6 mx-auto mb-2 text-primary" />
+                <span className="text-sm font-medium block">{vehicle.fuel}</span>
+                <span className="text-xs text-gray-500">Combustible</span>
+              </div>
+              <div className="bg-gray-50 p-3 rounded-lg text-center">
+                <Car className="h-6 w-6 mx-auto mb-2 text-primary" />
+                <span className="text-sm font-medium block">{vehicle.transmission}</span>
+                <span className="text-xs text-gray-500">Transmisión</span>
+              </div>
+              <div className="bg-gray-50 p-3 rounded-lg text-center">
+                <DoorOpen className="h-6 w-6 mx-auto mb-2 text-primary" />
+                <span className="text-sm font-medium block">{vehicle.doors}</span>
+                <span className="text-xs text-gray-500">Puertas</span>
+              </div>
+            </div>
+
+            <Separator />
+
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">{vehicle.name}</h1>
-              <h2 className="text-xl text-gray-600 mb-6">{vehicle.model}</h2>
-              
-              <div className="flex items-center mb-6">
-                <span className="text-3xl font-bold text-primary">{vehicle.price}</span>
-              </div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-gray-50 p-4 rounded-lg text-center">
-                  <Calendar className="h-6 w-6 mx-auto mb-2 text-primary" />
-                  <span className="block text-sm text-gray-600">Año</span>
-                  <span className="block font-medium">{vehicle.year}</span>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg text-center">
-                  <Fuel className="h-6 w-6 mx-auto mb-2 text-primary" />
-                  <span className="block text-sm text-gray-600">Combustible</span>
-                  <span className="block font-medium">{vehicle.fuel}</span>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg text-center">
-                  <LayoutGrid className="h-6 w-6 mx-auto mb-2 text-primary" />
-                  <span className="block text-sm text-gray-600">Transmisión</span>
-                  <span className="block font-medium">{vehicle.transmission}</span>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg text-center">
-                  <Wrench className="h-6 w-6 mx-auto mb-2 text-primary" />
-                  <span className="block text-sm text-gray-600">Estado</span>
-                  <span className="block font-medium">{vehicle.condition || "Nuevo"}</span>
-                </div>
-              </div>
-              
-              <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-800 mb-3">Descripción</h3>
-                <p className="text-gray-600 leading-relaxed">{vehicle.description}</p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button 
-                  className="flex-1 flex items-center justify-center gap-2" 
-                  size="lg"
-                  onClick={handleAddToCart}
-                >
-                  <ShoppingCart className="h-5 w-5" />
-                  Añadir al carrito
-                </Button>
-                <a 
-                  href={`https://wa.me/240555123456?text=Hola, estoy interesado en el vehículo ${vehicle.name} (ID: ${vehicle.id}). ¿Podría darme más información?`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <Button className="flex-1 sm:w-auto" variant="outline" size="lg">
-                    Consultar disponibilidad
-                  </Button>
-                </a>
-              </div>
-              
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-xl font-bold text-gray-800 mb-3">Características</h3>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  <li className="flex items-center text-gray-600">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Aire acondicionado
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Dirección asistida
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Cierre centralizado
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Elevalunas eléctricos
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Sistema de navegación
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Bluetooth
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Cámara trasera
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Sistema de sonido premium
-                  </li>
-                </ul>
-              </div>
+              <h3 className="text-lg font-semibold mb-2">Descripción</h3>
+              <p className="text-gray-700">{vehicle.description}</p>
+            </div>
+
+            {vehicle.featured && (
+              <Badge variant="secondary" className="bg-primary/10 text-primary">
+                Vehículo destacado
+              </Badge>
+            )}
+
+            <div className="pt-4">
+              <Button className="w-full" size="lg" onClick={handleAddToCart}>
+                Añadir al carrito
+              </Button>
             </div>
           </div>
         </div>

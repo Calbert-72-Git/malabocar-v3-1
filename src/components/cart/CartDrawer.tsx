@@ -65,9 +65,13 @@ const CartDrawer = () => {
                 <div key={item.id} className="flex items-start gap-4 py-4 border-b last:border-0">
                   <div className="h-16 w-16 rounded overflow-hidden flex-shrink-0">
                     <img 
-                      src={item.image} 
+                      src={item.imageUrl || item.image} 
                       alt={item.name}
                       className="h-full w-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "/placeholder.svg";
+                      }}
                     />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -102,7 +106,7 @@ const CartDrawer = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="font-medium">${item.price.toLocaleString()}</span>
+                    <span className="font-medium">{item.price}</span>
                   </div>
                 </div>
               ))}
