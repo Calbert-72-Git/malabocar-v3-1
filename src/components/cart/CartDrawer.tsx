@@ -9,7 +9,7 @@ import {
   DrawerTitle, 
   DrawerTrigger 
 } from "@/components/ui/drawer";
-import { ShoppingCart, X, Plus, Minus, Trash2 } from 'lucide-react';
+import { ShoppingCart, X, Plus, Minus, Trash2, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { Badge } from '@/components/ui/badge';
@@ -23,6 +23,27 @@ const CartDrawer = () => {
   const handleCheckout = () => {
     // Para futuras implementaciones de checkout
     navigate('/checkout');
+  };
+
+  const handleWhatsAppCheckout = () => {
+    // Crear mensaje para WhatsApp con detalles de los vehículos
+    let message = "Hola, estoy interesado en comprar los siguientes vehículos:\n\n";
+    
+    cartItems.forEach(item => {
+      message += `*${item.name} - ${item.model} (${item.year})*\n`;
+      message += `Precio: ${item.price}\n`;
+      message += `Cantidad: ${item.quantity}\n`;
+      message += `Detalles: ${item.transmission}, ${item.fuel}, ${item.doors} puertas\n\n`;
+    });
+    
+    message += `*Total: $${totalPrice.toLocaleString()}*\n\n`;
+    message += "Por favor, envíeme más información sobre cómo proceder con el pago.";
+    
+    // Codificar mensaje para URL
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Abrir WhatsApp con el mensaje
+    window.open(`https://wa.me/240555123456?text=${encodedMessage}`, '_blank');
   };
 
   return (
@@ -130,8 +151,16 @@ const CartDrawer = () => {
         <DrawerFooter className="border-t pt-4">
           {cartItems.length > 0 && (
             <>
-              <Button className="w-full" onClick={handleCheckout}>
+              <Button className="w-full mb-2" onClick={handleCheckout}>
                 Proceder al pago
+              </Button>
+              <Button 
+                variant="default" 
+                className="w-full bg-green-500 hover:bg-green-600 mb-2" 
+                onClick={handleWhatsAppCheckout}
+              >
+                <MessageSquare className="mr-2 h-5 w-5" />
+                Proceder al pago por WhatsApp
               </Button>
               <Button variant="outline" className="w-full" onClick={clearCart}>
                 Vaciar carrito

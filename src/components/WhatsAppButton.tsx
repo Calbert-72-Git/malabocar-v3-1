@@ -3,22 +3,40 @@ import React from 'react';
 import { MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const WhatsAppButton = () => {
+interface WhatsAppButtonProps {
+  message?: string;
+  phone?: string;
+  className?: string;
+  children?: React.ReactNode;
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+}
+
+const WhatsAppButton = ({
+  message = "Hola, estoy interesado en un vehículo",
+  phone = "240555123456",
+  className = "whatsapp-button rounded-full bg-green-500 hover:bg-green-600 h-16 w-16 flex items-center justify-center shadow-xl",
+  children,
+  variant = "default"
+}: WhatsAppButtonProps) => {
   const handleWhatsAppClick = () => {
-    // Reemplaza con tu número de WhatsApp real
-    window.open('https://wa.me/240555123456?text=Hola,%20estoy%20interesado%20en%20un%20vehículo', '_blank');
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
   };
 
   return (
     <Button 
       onClick={handleWhatsAppClick}
-      className="whatsapp-button rounded-full bg-green-500 hover:bg-green-600 h-16 w-16 flex items-center justify-center shadow-xl"
+      className={className}
+      variant={variant}
     >
-      <MessageSquare className="h-7 w-7 text-white" />
-      <span className="sr-only">Chat por WhatsApp</span>
+      {children || (
+        <>
+          <MessageSquare className="h-7 w-7 text-white" />
+          <span className="sr-only">Chat por WhatsApp</span>
+        </>
+      )}
     </Button>
   );
 };
 
 export default WhatsAppButton;
-
