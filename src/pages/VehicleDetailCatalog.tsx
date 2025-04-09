@@ -11,6 +11,7 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import Footer from '@/components/Footer';
 import { useCart } from '@/context/CartContext';
 import { toast } from 'sonner';
+import VehicleGallery from '@/components/vehicle/VehicleGallery';
 
 const VehicleDetailCatalog = () => {
   const { id } = useParams();
@@ -48,6 +49,9 @@ const VehicleDetailCatalog = () => {
     );
   }
 
+  // Usar la galería de imágenes si está disponible, de lo contrario usar solo la imagen principal
+  const galleryImages = vehicle.gallery || [vehicle.imageUrl];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -64,15 +68,7 @@ const VehicleDetailCatalog = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           <div>
             <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6">
-              <img 
-                src={vehicle.imageUrl} 
-                alt={vehicle.name} 
-                className="w-full h-auto object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "/placeholder.svg";
-                }}
-              />
+              <VehicleGallery images={galleryImages} alt={vehicle.name} />
             </div>
           </div>
 

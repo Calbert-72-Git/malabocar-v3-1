@@ -1,10 +1,11 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Fuel, ShoppingCart } from 'lucide-react';
+import { Calendar, Fuel, ShoppingCart, Image } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { Vehicle } from '@/data/vehicles';
+import { Badge } from '@/components/ui/badge';
 
 interface VehicleCardProps {
   vehicle: Vehicle;
@@ -19,6 +20,8 @@ const VehicleCard = ({ vehicle, linkTo = `/vehicle/${vehicle.id}` }: VehicleCard
     e.stopPropagation();
     addToCart(vehicle);
   };
+
+  const hasGallery = vehicle.gallery && vehicle.gallery.length > 1;
 
   return (
     <Link to={linkTo}>
@@ -37,6 +40,16 @@ const VehicleCard = ({ vehicle, linkTo = `/vehicle/${vehicle.id}` }: VehicleCard
             <div className="absolute top-0 right-0 bg-primary text-white px-3 py-1 text-xs font-semibold">
               Destacado
             </div>
+          )}
+          {hasGallery && (
+            <Badge 
+              variant="outline" 
+              className="absolute bottom-2 right-2 bg-black/60 text-white border-none" 
+              title="Ver más imágenes"
+            >
+              <Image className="h-3 w-3 mr-1" />
+              {vehicle.gallery.length}
+            </Badge>
           )}
         </div>
         <div className="p-4">
