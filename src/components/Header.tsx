@@ -169,6 +169,36 @@ const Header = () => {
         </div>
       </div>
 
+      {/* Menú móvil */}
+      {isMobile && isMenuOpen && (
+        <div className="md:hidden bg-white py-4 px-6 shadow-lg">
+          <nav className="flex flex-col space-y-4">
+            <Link to="/" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Inicio</Link>
+            <a href="/#vehiculos" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Vehículos</a>
+            <Link to="/catalog" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Catálogo</Link>
+            <Link to="/featured" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Destacados</Link>
+            <Link to="/about" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Nosotros</Link>
+            <Link to="/contact" className="text-gray-700 hover:text-primary font-medium py-2" onClick={toggleMenu}>Contacto</Link>
+            
+            <div className="flex items-center justify-between py-2">
+              <div className="relative">
+                <CartDrawer />
+                {totalItems > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+              </div>
+              <Link to="/catalog" className="flex-grow ml-4" onClick={toggleMenu}>
+                <Button variant="default" className="bg-primary hover:bg-primary/90 w-full">
+                  Ver Catálogo
+                </Button>
+              </Link>
+            </div>
+          </nav>
+        </div>
+      )}
+
       {/* Banner principal - Solo mostramos en la página de inicio */}
       {window.location.pathname === '/' && (
         <div 

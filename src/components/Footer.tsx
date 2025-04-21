@@ -47,7 +47,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center text-gray-300">
                 <Phone className="mr-3 h-5 w-5 text-primary" />
-                <span>+240 555 123 456</span>
+                <span>+240 222 176 082</span>
               </li>
               <li className="flex items-center text-gray-300">
                 <Mail className="mr-3 h-5 w-5 text-primary" />
@@ -88,4 +88,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
