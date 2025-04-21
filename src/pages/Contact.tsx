@@ -50,7 +50,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800 mb-2">Teléfono</h3>
-                      <p className="text-gray-600 mb-1">Ventas: +240 555 123 456</p>
+                      <p className="text-gray-600 mb-1">Ventas: +240 222 176 082</p>
                       <p className="text-gray-600">Soporte: +240 555 789 012</p>
                     </div>
                   </div>
@@ -197,3 +197,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

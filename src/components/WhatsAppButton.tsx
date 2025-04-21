@@ -13,7 +13,7 @@ interface WhatsAppButtonProps {
 
 const WhatsAppButton = ({
   message = "Hola, estoy interesado en un vehículo",
-  phone = "240555123456",
+  phone = "240222176082",
   className = "whatsapp-button rounded-full bg-green-500 hover:bg-green-600 h-16 w-16 flex items-center justify-center shadow-xl",
   children,
   variant = "default"
@@ -40,3 +40,4 @@ const WhatsAppButton = ({
 };
 
 export default WhatsAppButton;
+
