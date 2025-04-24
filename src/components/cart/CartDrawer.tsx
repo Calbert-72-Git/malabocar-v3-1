@@ -8,7 +8,7 @@ import {
   DrawerTitle, 
   DrawerTrigger 
 } from "@/components/ui/drawer";
-import { ShoppingCart, X, ArrowRight, Trash2, MessageSquare } from 'lucide-react';
+import { ShoppingCart, X, ArrowRight, Trash2, MessageSquare, Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { Badge } from '@/components/ui/badge';
