@@ -8,7 +8,7 @@ import {
   DrawerTitle, 
   DrawerTrigger 
 } from "@/components/ui/drawer";
-import { ShoppingCart, X, Plus, Minus, Trash2, MessageSquare } from 'lucide-react';
+import { ShoppingCart, X, ArrowRight, Trash2, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { Badge } from '@/components/ui/badge';
@@ -20,12 +20,10 @@ const CartDrawer = () => {
   const navigate = useNavigate();
   
   const handleCheckout = () => {
-    // Para futuras implementaciones de checkout
     navigate('/checkout');
   };
 
   const handleWhatsAppCheckout = () => {
-    // Crear mensaje para WhatsApp con detalles de los vehículos
     let message = "Hola, estoy interesado en comprar los siguientes vehículos:\n\n";
     
     cartItems.forEach(item => {
@@ -38,10 +36,8 @@ const CartDrawer = () => {
     message += `*Total: ${totalPrice.toLocaleString()} FCFA*\n\n`;
     message += "Por favor, envíeme más información sobre cómo proceder con el pago.";
     
-    // Codificar mensaje para URL
     const encodedMessage = encodeURIComponent(message);
     
-    // Abrir WhatsApp con el mensaje
     window.open(`https://wa.me/240555123456?text=${encodedMessage}`, '_blank');
   };
 
@@ -150,19 +146,31 @@ const CartDrawer = () => {
         <DrawerFooter className="border-t pt-4">
           {cartItems.length > 0 && (
             <>
-              <Button className="w-full mb-2" onClick={handleCheckout}>
-                Proceder al pago
-              </Button>
+              <div className="grid grid-cols-2 gap-2 mb-2">
+                <Button 
+                  variant="default"
+                  onClick={handleCheckout}
+                  className="flex items-center justify-center"
+                >
+                  Pagar
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+                <Button 
+                  variant="default" 
+                  className="flex items-center justify-center bg-green-500 hover:bg-green-600" 
+                  onClick={handleWhatsAppCheckout}
+                >
+                  WhatsApp
+                  <MessageSquare className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
               <Button 
-                variant="default" 
-                className="w-full bg-green-500 hover:bg-green-600 mb-2" 
-                onClick={handleWhatsAppCheckout}
+                variant="outline" 
+                className="w-full flex items-center justify-center text-destructive hover:text-destructive" 
+                onClick={clearCart}
               >
-                <MessageSquare className="mr-2 h-5 w-5" />
-                Proceder al pago por WhatsApp
-              </Button>
-              <Button variant="outline" className="w-full" onClick={clearCart}>
-                Vaciar carrito
+                <Trash2 className="mr-2 h-4 w-4" />
+                Vaciar
               </Button>
             </>
           )}
