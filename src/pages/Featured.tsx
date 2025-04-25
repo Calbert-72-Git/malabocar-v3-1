@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { vehicles } from '@/data/vehicles';
 import Header from '@/components/Header';
@@ -54,11 +53,24 @@ const Featured = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
+      <div 
+        className="w-full h-[300px] bg-cover bg-center relative mb-8"
+        style={{
+          backgroundImage: `url(https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1000)`,
+          backgroundPosition: 'center 35%'
+        }}
+      >
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <div className="text-center text-white">
+            <h1 className="text-4xl font-bold mb-2">Vehículos Destacados</h1>
+            <p className="text-lg font-light">
+              Nuestra colección premium de vehículos seleccionados por nuestros expertos
+            </p>
+          </div>
+        </div>
+      </div>
       <main className="flex-grow">
         <div className="container mx-auto px-4 py-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Vehículos Destacados</h1>
-          <p className="text-gray-600 mb-8">Nuestra colección premium de vehículos seleccionados por nuestros expertos</p>
-          
           <div className="bg-white p-6 rounded-lg shadow-md mb-8">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
               <FeaturedSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />

@@ -27,18 +27,18 @@ const createVehicles = () => {
       model: 'Avensis 2.0',
       year: 2010,
       color: 'Gris Plata',
-      imageUrl: '/vehicle1.jpg',
+      imageUrl: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000',
       description: 'Sedán familiar confiable con excelente consumo de combustible. Incluye aire acondicionado y sistema de audio.',
       featured: true,
       transmission: 'Manual',
       fuel: 'Gasolina',
       doors: 4,
       gallery: [
-        '/vehicle1.jpg',
-        '/vehicle2.jpg',
-        '/vehicle3.jpg',
-        '/vehicle4.jpg',
-        '/vehicle5.jpg'
+        'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=1000'
       ]
     },
     {
@@ -48,18 +48,18 @@ const createVehicles = () => {
       model: 'Carina E',
       year: 2008,
       color: 'Verde',
-      imageUrl: '/vehicle2.jpg',
+      imageUrl: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000',
       description: 'Vehículo económico y duradero. Perfecto para uso diario con buen espacio interior.',
       featured: false,
       transmission: 'Manual',
       fuel: 'Gasolina',
       doors: 4,
       gallery: [
-        '/vehicle2.jpg',
-        '/vehicle3.jpg',
-        '/vehicle4.jpg',
-        '/vehicle5.jpg',
-        '/vehicle6.jpg'
+        'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000'
       ]
     },
     {
@@ -69,18 +69,18 @@ const createVehicles = () => {
       model: 'Accent GL',
       year: 2012,
       color: 'Azul',
-      imageUrl: '/vehicle3.jpg',
+      imageUrl: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=1000',
       description: 'Sedán compacto con bajo consumo de combustible. Equipado con aire acondicionado y dirección asistida.',
       featured: true,
       transmission: 'Manual',
       fuel: 'Gasolina',
       doors: 4,
       gallery: [
-        '/vehicle3.jpg',
-        '/vehicle4.jpg',
-        '/vehicle5.jpg',
-        '/vehicle6.jpg',
-        '/vehicle1.jpg'
+        'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000'
       ]
     },
     {
@@ -90,18 +90,18 @@ const createVehicles = () => {
       model: 'Elantra GLS',
       year: 2013,
       color: 'Blanco',
-      imageUrl: '/vehicle4.jpg',
+      imageUrl: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1000',
       description: 'Sedán mediano con amplio espacio interior. Incluye reproductor CD y aire acondicionado.',
       featured: false,
       transmission: 'Manual',
       fuel: 'Gasolina',
       doors: 4,
       gallery: [
-        '/vehicle4.jpg',
-        '/vehicle5.jpg',
-        '/vehicle6.jpg',
-        '/vehicle1.jpg',
-        '/vehicle2.jpg'
+        'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=1000'
       ]
     },
     {
@@ -111,18 +111,18 @@ const createVehicles = () => {
       model: 'Corolla LE',
       year: 2011,
       color: 'Rojo',
-      imageUrl: '/vehicle5.jpg',
+      imageUrl: 'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=1000',
       description: 'Sedán confiable y económico. Equipado con sistema de frenos ABS y airbags.',
       featured: false,
       transmission: 'Automático',
       fuel: 'Gasolina',
       doors: 4,
       gallery: [
-        '/vehicle5.jpg',
-        '/vehicle6.jpg',
-        '/vehicle1.jpg',
-        '/vehicle2.jpg',
-        '/vehicle3.jpg'
+        'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1000'
       ]
     },
     {
@@ -132,18 +132,18 @@ const createVehicles = () => {
       model: 'i10 GL',
       year: 2014,
       color: 'Gris',
-      imageUrl: '/vehicle6.jpg',
+      imageUrl: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=1000',
       description: 'Compacto ideal para ciudad. Bajo consumo de combustible y fácil de estacionar.',
       featured: false,
       transmission: 'Manual',
       fuel: 'Gasolina',
       doors: 5,
       gallery: [
-        '/vehicle6.jpg',
-        '/vehicle1.jpg',
-        '/vehicle2.jpg',
-        '/vehicle3.jpg',
-        '/vehicle4.jpg'
+        'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1000'
       ]
     },
   ];
