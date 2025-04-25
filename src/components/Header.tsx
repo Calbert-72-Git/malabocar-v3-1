@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Car, Phone, Search, Menu, X, UserCircle, LogIn, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -20,7 +19,7 @@ const Header = () => {
       {/* Barra superior */}
       <div className="bg-primary py-2">
         <div className="container mx-auto flex justify-between items-center px-4">
-          <div className="flex items-center text-white">
+          <div className="hidden md:flex items-center text-white">
             <Phone className="h-4 w-4 mr-2" />
             <span className="text-sm">+240 222 176 082</span>
           </div>
