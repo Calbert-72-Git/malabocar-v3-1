@@ -1,3 +1,4 @@
+{/* Calbert 72: Carito de compra y de pedido */}
 import React from 'react';
 import { 
   Drawer, 
@@ -24,7 +25,7 @@ const CartDrawer = () => {
   };
 
   const handleWhatsAppCheckout = () => {
-    let message = "Hola, estoy interesado en comprar los siguientes vehículos:\n\n";
+    let message = "Hola, estoy interesado en comprar los siguientes vehículos de Malabo Car:\n\n";
     
     cartItems.forEach(item => {
       message += `*${item.name} - ${item.model} (${item.year})*\n`;
@@ -34,11 +35,11 @@ const CartDrawer = () => {
     });
     
     message += `*Total: ${totalPrice.toLocaleString()} FCFA*\n\n`;
-    message += "Por favor, envíeme más información sobre cómo proceder con el pago.";
+    message += "Por favor, envíeme más información sobre cómo proceder con la compra de un vehículo.";
     
     const encodedMessage = encodeURIComponent(message);
     
-    window.open(`https://wa.me/240555123456?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/240222176082?text=${encodedMessage}`, '_blank');
   };
 
   return (

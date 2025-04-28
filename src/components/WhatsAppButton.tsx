@@ -12,7 +12,7 @@ interface WhatsAppButtonProps {
 }
 
 const WhatsAppButton = ({
-  message = "Hola, estoy interesado en un vehículo",
+  message = "Hola, estoy interesado en un vehículo de Malabo Car...",
   phone = "240222176082",
   className = "whatsapp-button rounded-full bg-green-500 hover:bg-green-600 h-16 w-16 flex items-center justify-center shadow-xl",
   children,
@@ -32,7 +32,7 @@ const WhatsAppButton = ({
       {children || (
         <>
           <MessageSquare className="h-7 w-7 text-white" />
-          <span className="sr-only">Chat por WhatsApp</span>
+          <span className="sr-only">Chat por WhatsApp By Calbert 72</span>
         </>
       )}
     </Button>

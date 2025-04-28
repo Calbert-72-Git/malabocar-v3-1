@@ -1,4 +1,4 @@
-
+{/* Calbert 72: Página de nosotros */}
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -122,7 +122,7 @@ const About = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-1">Miguel Nguema</h3>
+                  <h3 className="text-xl font-bold text-gray-800 mb-1">Sergio "Nombre de prueba"</h3>
                   <p className="text-primary font-medium mb-3">Director General</p>
                   <p className="text-gray-600">
                     Con más de 15 años de experiencia en el sector automotriz, Miguel lidera nuestra empresa con visión y dedicación.
@@ -143,7 +143,7 @@ const About = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-1">Elena Obiang</h3>
+                  <h3 className="text-xl font-bold text-gray-800 mb-1">Dorcas Ana</h3>
                   <p className="text-primary font-medium mb-3">Jefa de Ventas</p>
                   <p className="text-gray-600">
                     Elena se asegura de que cada cliente reciba una atención personalizada y encuentre el vehículo perfecto.

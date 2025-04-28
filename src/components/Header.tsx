@@ -1,4 +1,4 @@
-
+{/* Calbert 72: Encabezado de página */}
 import React, { useState } from 'react';
 import { Car, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';

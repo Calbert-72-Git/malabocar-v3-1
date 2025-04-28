@@ -73,7 +73,7 @@ const Contact = () => {
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800 mb-2">Dirección</h3>
                       <p className="text-gray-600">
-                        Avenida de la Independencia 123<br />
+                        Avenida de la Independencia <br />
                         Malabo<br />
                         Guinea Ecuatorial
                       </p>

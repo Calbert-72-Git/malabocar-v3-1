@@ -1,4 +1,4 @@
-
+{/* Calbert 72: Pie de página */}
 import React from 'react';
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Twitter, Car } from 'lucide-react';
 
@@ -67,7 +67,7 @@ const Footer = () => {
                 <Clock className="mr-3 h-5 w-5 text-primary flex-shrink-0 mt-1" />
                 <div>
                   <p className="mb-1">Lunes a Viernes: 9:00 - 18:00</p>
-                  <p className="mb-1">Sábado: 9:00 - 14:00</p>
+                  <p className="mb-1">Sábado: 9:00 - 16:00</p>
                   <p>Domingo: Cerrado</p>
                 </div>
               </li>
@@ -81,6 +81,7 @@ const Footer = () => {
           <p className="text-center text-gray-400">
             © {new Date().getFullYear()} Malabo Car. Todos los derechos reservados.
           </p>
+          <a className="text-center text-gray-400" href="http://calbert72.com">Calbert 72</a>
         </div>
       </div>
     </footer>

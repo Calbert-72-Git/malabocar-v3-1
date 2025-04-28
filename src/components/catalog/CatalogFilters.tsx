@@ -1,4 +1,4 @@
-
+{/* Calbert 72: filtro por caracter */}
 import React from 'react';
 import { Filter, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';

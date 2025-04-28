@@ -56,7 +56,8 @@ const Featured = () => {
       <div 
         className="w-full h-[300px] bg-cover bg-center relative mb-8"
         style={{
-          backgroundImage: `url(https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1000)`,
+              {/* Calbert 72: Imagen del fondo del header */}
+          backgroundImage: `url(./public/header-background.jpg)`,
           backgroundPosition: 'center 35%'
         }}
       >

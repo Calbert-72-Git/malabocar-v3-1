@@ -91,7 +91,7 @@ const VehicleGallery = () => {
           </div>
         ) : (
           <div className="text-center py-10">
-            <p className="text-xl text-gray-500">No se encontraron vehículos con esos criterios</p>
+            <p className="text-xl text-gray-500">No se encontraron vehículos con esos criterios en Malabo Car</p>
           </div>
         )}
       </section>
