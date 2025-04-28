@@ -1,18 +1,22 @@
-# Welcome to your Lovable project
+# Welcome to your Calbert 72 project for Malabo Car
 
-## Project info
+## Creado y soportado por la organización Calbert 72
+- Entidad: Calbert 72
+- Editor: Calbert Osa
+- Contacto: +240222176082
+- Email: info@calbert72.com
+- Web site: www.calbert72.com
+- Creado en: marzo de 2025
 
-**URL**: https://lovable.dev/projects/892bd7ad-5053-4e02-8410-2efe2c91eef3
+TODOS LOS DERECHOS RESERVADOS
+
+## Project info [terminal: node -v], [terminal: npm -v]
+- React versión 22.14.0
+- npm versión 11.3.0
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/892bd7ad-5053-4e02-8410-2efe2c91eef3) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
@@ -60,10 +64,12 @@ This project is built with .
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Creado y soportado por la organización Calbert 72
+- Entidad: Calbert 72
+- Editor: Calbert Osa
+- Contacto: +240222176082
+- Email: info@calbert72.com
+- Web site: www.calbert72.com
+- Creado en: marzo de 2025
 
-Simply open [Lovable](https://lovable.dev/projects/892bd7ad-5053-4e02-8410-2efe2c91eef3) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+TODOS LOS DERECHOS RESERVADOS
